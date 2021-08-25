@@ -1,6 +1,6 @@
-# 第6節 Googleフォームへの入力を自動化しよう
+# 第 6 節 Google フォームへの入力を自動化しよう
 
-## 1. Googleフォームの準備をする
+## 1. Google フォームの準備をする
 
 1. フォームファイルを作成
 
@@ -40,14 +40,14 @@ https://qiita.com/kota-yata/items/9d4124ec7a7dd4e3d4f0
 
 ### わかったこと
 
-1. Seleniumとかいうものを使ってフォームを送信するらしい
-2. Google FormはURLにパラメータを指定することで、初期値を持った状態でフォームを開くことができるらしい
-    - `usp=pp_url` をURLパラメータに付与
-    - `entry.番号=回答内容` をURLパラメータに付与
+1. Selenium とかいうものを使ってフォームを送信するらしい
+2. Google Form は URL にパラメータを指定することで、初期値を持った状態でフォームを開くことができるらしい
+   - `usp=pp_url` を URL パラメータに付与
+   - `entry.番号=回答内容` を URL パラメータに付与
 
 ## 4. パラメータ付きのフォームを開いてみよう
 
-1. フォーム中身をChromeの開発者ツールを使って覗き、 `entry.番号` の規則性を調べる
+1. フォーム中身を Chrome の開発者ツールを使って覗き、 `entry.番号` の規則性を調べる
 
 ```
 開発者ツールの開き方
@@ -61,6 +61,7 @@ Windows -> Ctrl + Shift + i
 <img src="./images/8.jpg" width="400px">
 
 3. まとめた
+
 ```
 entry.1029139045 -> 氏名
 entry.387916820 -> メールアドレス
@@ -71,14 +72,13 @@ entry.731826105_month -> 生年月日の月
 entry.731826105_day -> 生年月日の日
 ```
 
-4. 3をURLに反映してフォームを開いてみよう
+4. 3 を URL に反映してフォームを開いてみよう
 
-フォームのURLとパラメータの間に`?`を入れ、それからは`&`でパラメータを区切っていく
+フォームの URL とパラメータの間に`?`を入れ、それからは`&`でパラメータを区切っていく
 
 まずは試しに氏名だけ
 
 https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform?usp=pp_url&entry.1029139045=URLアクセステスト名
-
 
 <img src="./images/9.jpg" width="400px">
 
@@ -86,5 +86,33 @@ https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t
 
 https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform?usp=pp_url&entry.1029139045=URLアクセステスト名&entry.387916820=test@gmail.com&entry.1239014792=0000-0000-0000&entry.1382078040=TEST prefecture&entry.731826105_year=1996&entry.731826105_month=7&entry.731826105_day=17
 
-5. 4でできたURLをプログラムから開いてみよう
+5. 4 でできた URL をプログラムから開いてみよう
 
+```
+pip3 install selenium
+pip3 install pandas
+```
+
+```python
+from selenium import webdriver
+
+# フォームのURLを変数で保持する
+form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform?usp=pp_url&entry.1029139045=URLアクセステスト名&entry.387916820=test@gmail.com&entry.1239014792=0000-0000-0000&entry.1382078040=TEST prefecture&entry.731826105_year=1996&entry.731826105_month=7&entry.731826105_day=17';
+
+# ブラウザを操作するためのインスタンスを生成
+driver = webdriver.Chrome()
+
+# ブラウザでフォームを開く
+driver.get(form_url)
+
+# 5秒間待つ
+sleep(5)
+
+# ブラウザを閉じる
+driver.close()
+
+# メモリを解放する
+driver.quit()
+```
+
+6. ボタンを押してみよう
