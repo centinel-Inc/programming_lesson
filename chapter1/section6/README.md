@@ -197,7 +197,53 @@ for index, row in df.iterrows():
     # print(row)
 ```
 
-## 8. 読み取ったデータをURLのパラメータに変換する
+## 8. 読み取ったデータをURLパラメータに変換する準備を行う
 
+読み取ったデータを辞書型の変数に格納し、その変数をURLパラメータに変換したい。
+そのため辞書型の変数からURLパラメータへ変換する関数を実装する。
+
+```python
+# パラメータを保持する辞書型の変数
+# keyにurlパラメータ名、valueに入る要素名を入れる（valueはわかりやすければ適当な値でも大丈夫）
+urlParamDict = {
+    'usp': 'pp_url',
+    'entry.1029139045': '氏名',
+    'entry.387916820': 'メールアドレス',
+    'entry.1239014792': '電話番号',
+    'entry.1382078040': '住所',
+    'entry.731826105_year': '年',
+    'entry.731826105_month': '月',
+    'entry.731826105_day': '日',
+}
+
+def convertDictToUrlParams(params):
+    """[summary]
+
+    Args:
+        params (Dict): 入力したい値を辞書型で表現した値
+
+    Returns:
+        string: paramsをURLパラメータに変換した値
+        (例) param1=value1&param2=value2&param3=value3
+    """
+    paramsString = ''
+    for key, value in params.items():
+        paramsString += '&' + key + "=" + value
+    
+    # 最初の「&」を削除している。URLパラメータの最初は「&」ではないため。
+    # ここでは「スライス」という機能を使い、"1インデックス"以降の文字を取得している
+    # インデックスは0始まりなので、2文字目以降を取得することになる
+    return paramsString[1:]
+
+# 期待している値
+expect = 'usp=pp_url&entry.1029139045=氏名&entry.387916820=メールアドレス&entry.1239014792=電話番号&entry.1382078040=住所&entry.731826105_year=年&entry.731826105_month=月&entry.731826105_day=日'
+actual = convertDictToUrlParams(urlParamDict)
+
+# 期待する値になっているかテストを行う
+if expect == actual:
+    print("🎉期待する値です🎉")
+else:
+    print("🥲期待する文字列ではありません🥲")
+```
 
 
