@@ -156,3 +156,44 @@ driver.close()
 # メモリを解放する
 driver.quit()
 ```
+
+7. データを読み込ませてみよう
+
+以下のようなデータをCSV形式で用意します
+|氏名|メールアドレス|電話番号|住所|年|月|日|
+|:----|:----|:----|:----|:----|:----|:----|
+|テストタロウ0|test0@gmail.com|0800000000|東京都|1990|1|10|
+|テストタロウ1|test1@gmail.com|08011111111|神奈川県|1991|1|11|
+
+### CSVを読み込む
+
+```python
+import pandas as pd
+
+# CSVを読み込む
+df = pd.read_csv('./data.csv', dtype=str)
+
+# コンソールにプリントして確認してみる
+print(df)
+```
+
+### 読み取ったCSVを一列ごとに取り出してみる
+
+```python
+import pandas as pd
+
+# CSVを読み込む
+# 型のヒントを書くことで補完が効くようになる
+df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
+
+# 一列ごとに処理できる
+for index, row in df.iterrows():
+    # どのような値が入っているか確認してみよう
+    print(index)
+
+    # 上の確認ができたら、下のコメントを外してこちらも確認してみよう
+    # print(row)
+```
+
+8. 読み取ったデータをURLのパラメータに変換してみよう
+
