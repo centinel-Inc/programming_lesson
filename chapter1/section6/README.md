@@ -118,6 +118,18 @@ driver.quit()
 
 6. ボタンを押してみよう
 
+### Seleniumでボタンを押させるためには、ボタンの特徴を教えてあげる必要がある
+- class
+- id
+- [xpath](https://www.octoparse.jp/blog/xpath-introduction/) 👈 今回これを利用する
+
+### 開発者ツールからxpathをコピー
+
+<img src="./images/10.jpg" width="400px">
+
+
+### 実行してみよう
+
 ```python
 from selenium import webdriver
 import time
@@ -131,9 +143,9 @@ driver = webdriver.Chrome()
 # ブラウザでフォームを開く
 driver.get(form_url)
 
-# ここでボタンを押したい
-path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div'
-driver.find_element_by_xpath(xpath).click()
+# ボタンを押して送信する
+path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div' # コピーしたボタンのxpathを貼り付ける
+driver.find_element_by_xpath(path).click()
 
 # 5秒間待つ
 time.sleep(5)
