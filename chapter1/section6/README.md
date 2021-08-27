@@ -45,7 +45,7 @@ https://qiita.com/kota-yata/items/9d4124ec7a7dd4e3d4f0
    - `usp=pp_url` を URL パラメータに付与
    - `entry.番号=回答内容` を URL パラメータに付与
 
-## 4. パラメータ付きのフォームを開いてみよう
+## 4. パラメータ付きのフォームを開いて
 
 1. フォーム中身を Chrome の開発者ツールを使って覗き、 `entry.番号` の規則性を調べる
 
@@ -72,7 +72,7 @@ entry.731826105_month -> 生年月日の月
 entry.731826105_day -> 生年月日の日
 ```
 
-4. 3 を URL に反映してフォームを開いてみよう
+4. 3 を URL に反映してフォームを開いて
 
 フォームの URL とパラメータの間に`?`を入れ、それからは`&`でパラメータを区切っていく
 
@@ -86,7 +86,7 @@ https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t
 
 https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform?usp=pp_url&entry.1029139045=URLアクセステスト名&entry.387916820=test@gmail.com&entry.1239014792=0000-0000-0000&entry.1382078040=TEST prefecture&entry.731826105_year=1996&entry.731826105_month=7&entry.731826105_day=17
 
-## 5. 4 でできたURLをプログラムから開いてみよう
+## 5. 4 でできたURLをプログラムから開いて
 
 ```
 pip3 install selenium
@@ -116,7 +116,7 @@ driver.close()
 driver.quit()
 ```
 
-## 6. ボタンを押してみよう
+## 6. ボタンを押して
 
 ### Seleniumでボタンを押させるためには、ボタンの特徴を教えてあげる必要がある
 - class
@@ -128,7 +128,7 @@ driver.quit()
 <img src="./images/10.jpg" width="400px">
 
 
-### 実行してみよう
+### 実行して
 
 ```python
 from selenium import webdriver
@@ -159,7 +159,7 @@ driver.quit()
 
 # 番外編 使いやすくしよう
 
-## 7. ファイルからデータを読み込んでみよう
+## 7. ファイルからデータを読み込む
 
 以下のようなデータをCSV形式で用意します
 |氏名|メールアドレス|電話番号|住所|年|月|日|
@@ -190,12 +190,14 @@ df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
 
 # 一列ごとに処理できる
 for index, row in df.iterrows():
-    # どのような値が入っているか確認してみよう
+    # どのような値が入っているか確認してみる
     print(index)
 
-    # 上の確認ができたら、下のコメントを外してこちらも確認してみよう
+    # 上の確認ができたら、下のコメントを外してこちらも確認してみる
     # print(row)
 ```
 
-## 8. 読み取ったデータをURLのパラメータに変換してみよう
+## 8. 読み取ったデータをURLのパラメータに変換する
+
+
 
