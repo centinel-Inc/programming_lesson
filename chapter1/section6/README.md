@@ -86,7 +86,7 @@ https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t
 
 https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform?usp=pp_url&entry.1029139045=URLアクセステスト名&entry.387916820=test@gmail.com&entry.1239014792=0000-0000-0000&entry.1382078040=TEST prefecture&entry.731826105_year=1996&entry.731826105_month=7&entry.731826105_day=17
 
-## 5. 4 でできた URL をプログラムから開いて
+## 5. 4 でできた URL をプログラムから開く
 
 ```
 pip3 install selenium
@@ -106,8 +106,9 @@ driver = webdriver.Chrome()
 # ブラウザでフォームを開く
 driver.get(form_url)
 
-# 5秒間待つ
-time.sleep(5)
+# 3秒間待つ
+# わかりやすくするため
+time.sleep(3)
 
 # ブラウザを閉じる
 driver.close()
@@ -143,12 +144,16 @@ driver = webdriver.Chrome()
 # ブラウザでフォームを開く
 driver.get(form_url)
 
+# 1秒間待つ
+# わかりやすくするため
+time.sleep(1)
+
 # ボタンを押して送信する
 path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div' # コピーしたボタンのxpathを貼り付ける
 driver.find_element_by_xpath(path).click()
 
-# 5秒間待つ
-time.sleep(5)
+# 3秒間待つ
+time.sleep(3)
 
 # ブラウザを閉じる
 driver.close()
@@ -215,7 +220,7 @@ for index, row in df.iterrows():
 ```python
 # パラメータを保持する辞書型の変数
 # keyにurlパラメータ名、valueに入る要素名を入れる（valueはわかりやすければ適当な値でも大丈夫）
-urlParamDict = {
+url_param_dict = {
     'usp': 'pp_url',
     'entry.1029139045': '氏名',
     'entry.387916820': 'メールアドレス',
@@ -227,27 +232,18 @@ urlParamDict = {
 }
 
 def convertDictToUrlParams(params):
-    """[summary]
-
-    Args:
-        params (Dict): 入力したい値を辞書型で表現した値
-
-    Returns:
-        string: paramsをURLパラメータに変換した値
-        (例) param1=value1&param2=value2&param3=value3
-    """
-    paramsString = ''
+    params_string = ''
     for key, value in params.items():
-        paramsString += '&' + key + "=" + value
+        params_string += '&' + key + "=" + value
 
     # 最初の「&」を削除している。URLパラメータの最初は「&」ではないため。
     # ここでは「スライス」という機能を使い、"1インデックス"以降の文字を取得している
     # インデックスは0始まりなので、2文字目以降を取得することになる
-    return paramsString[1:]
+    return params_string[1:]
 
 # 期待している値
 expect = 'usp=pp_url&entry.1029139045=氏名&entry.387916820=メールアドレス&entry.1239014792=電話番号&entry.1382078040=住所&entry.731826105_year=年&entry.731826105_month=月&entry.731826105_day=日'
-actual = convertDictToUrlParams(urlParamDict)
+actual = convertDictToUrlParams(url_param_dict)
 
 # 期待する値になっているかテストを行う
 if expect == actual:
@@ -256,14 +252,14 @@ else:
     print'🥲期待する文字列ではありません🥲')
 ```
 
-## 8. 読み取った CSV を URL パラメータの文字列に変換する
+## 9. 読み取った CSV を URL パラメータの文字列に変換する
 
 ```python
 import pandas as pd
 
 # パラメータを保持する辞書型の変数
 # keyにurlパラメータ名、valueに入る要素名を入れる（valueはわかりやすければ適当な値でも大丈夫）
-urlParamDict = {
+url_param_dict = {
     'usp': 'pp_url',
     'entry.1029139045': '氏名',
     'entry.387916820': 'メールアドレス',
@@ -275,23 +271,76 @@ urlParamDict = {
 }
 
 def convertDictToUrlParams(params):
-    """[summary]
-
-    Args:
-        params (Dict): 入力したい値を辞書型で表現した値
-
-    Returns:
-        string: paramsをURLパラメータに変換した値
-        (例) param1=value1&param2=value2&param3=value3
-    """
-    paramsString = ''
+    params_string = ''
     for key, value in params.items():
-        paramsString += '&' + key + "=" + value
+        params_string += '&' + key + "=" + value
 
     # 最初の「&」を削除している。URLパラメータの最初は「&」ではないため。
     # ここでは「スライス」という機能を使い、"1インデックス"以降の文字を取得している
     # インデックスは0始まりなので、2文字目以降を取得することになる
-    return paramsString[1:]
+    return params_string[1:]
+
+# CSVを読み込む
+# 型のヒントを書くことでVS Codeにて補完が効くようになる
+df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
+
+for index, row in df.iterrows():
+    # CSVデータを入れるため、辞書型の変数をコピーして用意する
+    # url_param_dictに副作用を及ぼしたくないので、値をコピーして一時的な変数を用意する
+    temp_url_param_dict = url_param_dict.copy()
+
+    # 辞書型のkeyにvalueを代入したい場合は、以下のように行います。
+    temp_url_param_dict['entry.1029139045'] = row['氏名']
+
+    # 変数の中身をこまめにprintして確認すると、状況を把握しやすく効率よく開発できるのでおすすめです
+    # 以下のように文字列に変数を埋め込んで、printすることができます
+    # 他の言語でも方法は違いますが、可能ですので調べてみてください
+    print('url_param_dictの氏名は「{}」で、temp_url_param_dictの氏名は「{}」です。'.format(url_param_dict['entry.1029139045'], temp_url_param_dict['entry.1029139045']))
+
+    temp_url_param_dict['entry.1029139045'] = row['メールアドレス']
+    temp_url_param_dict['entry.387916820'] = row['電話番号']
+    temp_url_param_dict['entry.1239014792'] = row['住所']
+    temp_url_param_dict['entry.731826105_year'] = row['年']
+    temp_url_param_dict['entry.731826105_month'] = row['月']
+    temp_url_param_dict['entry.731826105_day'] = row['日']
+
+    # URLパラメータの文字列を組み立てる
+    url_params = convertDictToUrlParams(temp_url_param_dict)
+    print("urlParams: {}".format(url_params))
+```
+
+## 10. 今まで作ってきたものを組み合わせて、CSV データをフォームへ投稿する機能を完成させる
+
+```python
+import pandas as pd
+from selenium import webdriver
+import time
+
+# GoogleフォームのURL
+form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform'
+
+# パラメータを保持する辞書型の変数
+# keyにurlパラメータ名、valueに入る要素名を入れる（valueはわかりやすければ適当な値でも大丈夫）
+url_param_dict = {
+    'usp': 'pp_url',
+    'entry.1029139045': '氏名',
+    'entry.387916820': 'メールアドレス',
+    'entry.1239014792': '電話番号',
+    'entry.1382078040': '住所',
+    'entry.731826105_year': '年',
+    'entry.731826105_month': '月',
+    'entry.731826105_day': '日',
+}
+
+def convertDictToUrlParams(params):
+    params_string = ''
+    for key, value in params.items():
+        params_string += '&' + key + "=" + value
+
+    # 最初の「&」を削除している。URLパラメータの最初は「&」ではないため。
+    # ここでは「スライス」という機能を使い、"1インデックス"以降の文字を取得している
+    # インデックスは0始まりなので、2文字目以降を取得することになる
+    return params_string[1:]
 
 # CSVを読み込む
 # 型のヒントを書くことでVS Codeにて補完が効くようになる
@@ -300,23 +349,41 @@ df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
 for index, row in df.iterrows():
     # CSVデータを入れるため、辞書型の変数をコピーして用意する
     # urlParamDictに副作用を及ぼしたくないので、値をコピーして一時的な変数を用意する
-    tempUrlParamDict = urlParamDict.copy()
+    temp_url_param_dict = url_param_dict.copy()
 
     # 辞書型のkeyにvalueを代入したい場合は、以下のように行います。
-    tempUrlParamDict['entry.1029139045'] = row['氏名']
+    temp_url_param_dict['entry.1029139045'] = row['氏名']
+    temp_url_param_dict['entry.1029139045'] = row['メールアドレス']
+    temp_url_param_dict['entry.387916820'] = row['電話番号']
+    temp_url_param_dict['entry.1239014792'] = row['住所']
+    temp_url_param_dict['entry.731826105_year'] = row['年']
+    temp_url_param_dict['entry.731826105_month'] = row['月']
+    temp_url_param_dict['entry.731826105_day'] = row['日']
 
-    # 変数の中身をこまめにprintして確認すると、状況を把握しやすく効率よく開発できるのでおすすめです
-    # 以下のように文字列に変数を埋め込んで、printすることができます
-    # 他の言語でも方法は違いますが、可能ですので調べてみてください
-    print('urlParamDictの氏名は「{}」で、tempUrlParamDictの氏名は「{}」です。'.format(urlParamDict['entry.1029139045'], tempUrlParamDict['entry.1029139045']))
+    # URLパラメータの文字列を組み立てる
+    urlParams = convertDictToUrlParams(temp_url_param_dict)
 
-    tempUrlParamDict['entry.1029139045'] = row['メールアドレス']
-    tempUrlParamDict['entry.387916820'] = row['電話番号']
-    tempUrlParamDict['entry.1239014792'] = row['住所']
-    tempUrlParamDict['entry.731826105_year'] = row['年']
-    tempUrlParamDict['entry.731826105_month'] = row['月']
-    tempUrlParamDict['entry.731826105_day'] = row['日']
+    form_url_with_params = form_url + "?" + urlParams;
 
-    urlParams = convertDictToUrlParams(tempUrlParamDict)
-    print("urlParams: {}".format(urlParams))
+    # ブラウザを操作するためのインスタンスを生成
+    driver = webdriver.Chrome()
+
+    # ブラウザでフォームを開く
+    driver.get(form_url_with_params)
+
+    # 1秒間待つ
+    time.sleep(1)
+
+    # ボタンを押して送信する
+    path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div'
+    driver.find_element_by_xpath(path).click()
+
+    # 3秒間待つ
+    time.sleep(3)
+
+    # ブラウザを閉じる
+    driver.close()
+
+    # メモリを解放する
+    driver.quit()
 ```
