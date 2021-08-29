@@ -4,15 +4,15 @@
 
 1. フォームファイルを作成
 
-<img src="./images/5.jpg" width="400px">
+<img src="./images/5.jpg">
 
 2. フォームに項目を追加
 
-<img src="./images/6.jpg" width="400px">
+<img src="./images/6.jpg">
 
 3. 完成
 
-<img src="./images/7.jpg" width="400px">
+<img src="./images/7.jpg">
 
 ## 2. 何を実現したいか考える
 
@@ -20,19 +20,19 @@ https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t
 
 1. フォームページを開く
 
-<img src="./images/2.jpg" width="400px">
+<img src="./images/2.jpg">
 
 2. 情報を入力する
 
-<img src="./images/3.jpg" width="400px">
+<img src="./images/3.jpg">
 
 3. 送信ボタンを押す
 
-<img src="./images/4.jpg" width="400px">
+<img src="./images/4.jpg">
 
 ## 3. 実現方法を調査する
 
-<img src="./images/1.jpg" width="400px">
+<img src="./images/1.jpg">
 
 一番上の記事が良さそう
 
@@ -58,7 +58,7 @@ Windows -> Ctrl + Shift + i
 
 2. 結果
 
-<img src="./images/8.jpg" width="400px">
+<img src="./images/8.jpg">
 
 3. まとめた
 
@@ -80,7 +80,7 @@ entry.731826105_day -> 生年月日の日
 
 https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform?usp=pp_url&entry.1029139045=URLアクセステスト名
 
-<img src="./images/9.jpg" width="400px">
+<img src="./images/9.jpg">
 
 では全部入り
 
@@ -127,7 +127,7 @@ driver.quit()
 
 ### 開発者ツールから xpath をコピー
 
-<img src="./images/10.jpg" width="400px">
+<img src="./images/10.jpg">
 
 ### 実際にプログラムから押す
 
