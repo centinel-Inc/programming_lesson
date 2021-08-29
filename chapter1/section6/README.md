@@ -45,7 +45,7 @@ https://qiita.com/kota-yata/items/9d4124ec7a7dd4e3d4f0
    - `usp=pp_url` を URL パラメータに付与
    - `entry.番号=回答内容` を URL パラメータに付与
 
-## 4. パラメータ付きのフォームを開いて
+## 4. パラメータ付きのフォームをブラウザで開いてみる
 
 1. フォーム中身を Chrome の開発者ツールを使って覗き、 `entry.番号` の規則性を調べる
 
@@ -117,7 +117,7 @@ driver.close()
 driver.quit()
 ```
 
-## 6. ボタンを押して
+## 6. 送信ボタンをプログラムから押す
 
 ### Selenium でボタンを押させるためには、ボタンの特徴を教えてあげる必要がある
 
@@ -129,7 +129,7 @@ driver.quit()
 
 <img src="./images/10.jpg" width="400px">
 
-### 実行して
+### 実際にプログラムから押す
 
 ```python
 from selenium import webdriver
