@@ -1,5 +1,13 @@
 # 第 6 節 抽選フォームへの入力を自動化しよう
 
+### 完成形
+
+```sh
+git clone https://github.com/centinel-jp/programming_lesson.git
+cd programming_lesson/chapter1/section6/
+python3 section6.py
+```
+
 抽選に Google フォームが使われていたとして話を進めます
 
 1. フォームファイルを作成
