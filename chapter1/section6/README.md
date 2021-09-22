@@ -118,10 +118,10 @@ driver.get(form_url)
 # わかりやすくするため
 time.sleep(3)
 
-# ブラウザを閉じる
+# タグを閉じる
 driver.close()
 
-# メモリを解放する
+# ブラウザを閉じる
 driver.quit()
 ```
 
@@ -163,10 +163,10 @@ driver.find_element_by_xpath(path).click()
 # 3秒間待つ
 time.sleep(3)
 
-# ブラウザを閉じる
+# タグを閉じる
 driver.close()
 
-# メモリを解放する
+# ブラウザを閉じる
 driver.quit()
 ```
 
@@ -389,9 +389,9 @@ for index, row in df.iterrows():
     # 3秒間待つ
     time.sleep(3)
 
-    # ブラウザを閉じる
+    # タグを閉じる
     driver.close()
 
-    # メモリを解放する
+    # ブラウザを閉じる
     driver.quit()
 ```
