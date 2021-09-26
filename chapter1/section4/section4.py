@@ -4,7 +4,10 @@ from time import sleep
 # ブラウザを開く
 driver = webdriver.Chrome()
 
-# 表示されたのを確認するために５秒処理を止める
+# get内に指定したサイトを開く
+# TODO 他のサイトも開いてみましょう
+driver.get('https://centinel.jp/')
+
 sleep(5)
 
 # ブラウザを閉じる

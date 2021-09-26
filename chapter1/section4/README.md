@@ -14,7 +14,7 @@ https://www.google.com/intl/ja_jp/chrome/
 
 
 ## 2. brewのインストール
-chromedriverのインストールにbrewを利用するのでbrewを導入していない場合はbrewをインストールしてください
+chromedriverのインストールにbrewを利用するので導入していない場合はインストールしてください
 
 https://brew.sh/index_ja
 
@@ -41,7 +41,10 @@ from time import sleep
 # ブラウザを開く
 driver = webdriver.Chrome()
 
-# 表示されたのを確認するために５秒処理を止める
+# get内に指定したサイトを開く
+# TODO 他のサイトも開いてみましょう
+driver.get('https://centinel.jp/')
+
 sleep(5)
 
 # ブラウザを閉じる
@@ -50,12 +53,15 @@ driver.quit()
 
 ## Tips
 ### 起動時にエラーが出た時 その1
-<img src="./images/1.png">
-このようなエラーが出た場合は許可を与える必要があります。
+このようなエラーが出た場合は許可を与える必要があります。
 
+<img src="./images/1.png">
 
 <img src="./images/2.png">
-システム環境設定 > セキュリティとプライバシー に移動すると「chromedriverは開発元を確認できないため、使用がブロックされました。」というメッセージが表示されているのでこのまま許可をクリックしてください。
+
+システム環境設定 > セキュリティとプライバシー に移動すると「chromedriverは開発元を確認できないため、使用がブロックされました。」というメッセージが表示されています。
+
+メッセージの右にある「このまま許可」をクリックしてください。
 
 
 

@@ -4,7 +4,6 @@ from time import sleep
 # ブラウザを開く
 driver = webdriver.Chrome()
 
-# TODO URLを変更して好きなサイトを開いてみましょう
 # 画像をダウンロードしたいサイトを開く
 driver.get("https://centinel.jp/")
 
