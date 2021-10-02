@@ -24,8 +24,55 @@
     <title>chapter1-section2</title>
   </head>
   <body>
-    <h1>chapter1-section2</h1>
-    <h2>chapter1-section2</h2>
+    <h1>見出しです。1から</h1>
+    <h6>6まであり、数字が小さいほど文字が大きくなります。</h6>
+
+    <a href="https://centinel.jp/" target="_blank" rel="noopener"
+      >よくみるリンクです。
+    </a>
+
+    <p>
+      target=_blankと指定することで、クリックした際に新しいタブでリンク先を開くことができます。
+    </p>
+    <p>
+      もしtargetに_blankを使用する際は、rel=noopenerをつけることでセキュリティを向上させることができるのでおすすめです
+    </p>
+
+    <button>ボタン</button>
+
+    <button href="https://centinel.jp/" target="_blank" rel="noopener">
+      リンク付きボタン
+    </button>
+
+    <img src="https://centinel.jp/images/logo.png" alt="centiロゴ" />
+
+    <div></div>
+
+    <div>
+      <h1>
+        divタグの説明
+        <p>divタグは単体で利用することは少なく</p>
+        <p>CSSと連携して使用することが多いです。</p>
+      </h1>
+    </div>
+
+    <table>
+      <tr>
+        <th>名前</th>
+        <th>好きなプログラミング言語</th>
+        <th>プログラミング歴</th>
+      </tr>
+      <tr>
+        <td>テストA</td>
+        <td>Swift</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>テストB</td>
+        <td>TypeScript</td>
+        <td>5</td>
+      </tr>
+    </table>
   </body>
 </html>
 ```
