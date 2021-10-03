@@ -31,19 +31,21 @@
     <title>chapter1-section2</title>
   </head>
   <body>
-    <h1>見出しを意味しています。1から</h1>
-    <h6>6まであり、数字が小さいほど文字が大きくなります。</h6>
+    <h1>見出しを意味しています。h1の他にも</h1>
+    <h6>h6まであり、数字が小さいほど文字が大きくなります。</h6>
 
-    <a href="https://centinel.jp/" target="_blank" rel="noopener"
-      >よくみるリンクです。
+    <!-- <h2>自分の好きな文字を打ち込んでみましょう</h2> -->
+
+    <a href="https://centinel.jp/" target="_blank" rel="noopener">
+      aタグはリンクを表現できます。
     </a>
 
     <p>
       target=_blankと指定することで、クリックした際に新しいタブでリンク先を開くことができます。
     </p>
-    <p>
+    <!-- <p>
       もしtargetに_blankを使用する際は、rel=noopenerをつけることでセキュリティを向上させることができるのでおすすめです
-    </p>
+    </p> -->
 
     <button>ボタン</button>
 
