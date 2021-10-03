@@ -37,7 +37,7 @@
     <!-- <h2>自分の好きな文字を打ち込んでみましょう</h2> -->
 
     <a href="https://centinel.jp/" target="_blank" rel="noopener">
-      aタグはリンクを表現できます。
+      aタグはリンクを表現します。
     </a>
 
     <p>
@@ -47,13 +47,7 @@
       もしtargetに_blankを使用する際は、rel=noopenerをつけることでセキュリティを向上させることができるのでおすすめです
     </p> -->
 
-    <button>ボタン</button>
-
-    <button href="https://centinel.jp/" target="_blank" rel="noopener">
-      リンク付きボタン
-    </button>
-
-    <p>ボタンにも同じくリンクを付与することができます。</p>
+    <button>文字通りボタンを表現します</button>
 
     <img
       src="https://centinel.jp/images/logo.png"
@@ -62,9 +56,10 @@
       height="300px"
     />
 
-    <p>imgタグは画像を表示することができます。</p>
+    <p>imgタグは画像を表現します</p>
     <p>widthやheightを指定することで、表示する画像の大きさを変えることができます。</p>
     <p>初めて画像を表示した際は感動すると思うので、ぜひ手を動かして自分の好きな画像を表示してみてください。</p>
+    <p>src=""に画像のURLを入れれば表示できます。</p>
 
     <div></div>
 
@@ -81,13 +76,13 @@
     </div>
 
     <table>
-      <tr>
-        <th>名前</th>
+      <tr> <!-- table row(行) -->
+        <th>名前</th> <!-- table header(見出し) -->
         <th>好きなプログラミング言語</th>
         <th>プログラミング歴</th>
       </tr>
       <tr>
-        <td>テストA</td>
+        <td>テストA</td> <!-- table data -->
         <td>Swift</td>
         <td>3</td>
       </tr>
@@ -101,12 +96,12 @@
 </html>
 ```
 
-### <!DOCTYPE html>
+### DOCTYPE html
 
 文章の種類が HTML であることを宣言しています。
 最初は特に考えずに記述することをおすすめします。
 
-### <html lang="ja">
+### html lang="ja"
 
 このタグの中に HTML の要素が入っていることを宣言しています。
 最初は特に考えずに記述することをおすすめします。
@@ -130,3 +125,6 @@
 3. HTML の要素が丸見えになるので、いじって遊ぶ
 
 4. いじるのに飽きたら次の第 3 節を始めてみてください
+
+以上でこの回は終わりになります。
+もしよければ次の動画もご視聴ください。
