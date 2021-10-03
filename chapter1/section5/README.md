@@ -10,11 +10,13 @@ python3 section5-5.py
 
 商品レビューサイトの画像を一括ダウンロードしてみましょう
 
-###　今回のターゲット
+### 今回のターゲット
+
 https://centinel.jp/
 
 
-###　今回使うライブラリ
+### 今回使うライブラリ
+
 ```
 pip3 install selenium
 pip3 install requests
