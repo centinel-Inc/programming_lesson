@@ -7,6 +7,6 @@ print(number) # 1が表示される
 text = 'apple'
 print(text) # appleが表示される
 
-# index          0         1         2       3
-fruit_list = ['apple', 'orange', 'lemon', 'apple']
-print(fruit_list) # ['apple', 'orange', 'lemon', 'apple']が表示される
+
+fruit_list = ['apple', 'orange', 'lemon']
+print(fruit_list) # ['apple', 'orange', 'lemon']が表示される
