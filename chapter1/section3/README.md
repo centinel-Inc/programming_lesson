@@ -51,6 +51,7 @@ pythonのコードを書くファイルを用意します。
 3. 第３回なので「section3.py」というファイルを作成します
 <img src="./images/2.png">
 4. 開かれたエディターに↓を入力
+
 ```
 print('hello world')
 ```
