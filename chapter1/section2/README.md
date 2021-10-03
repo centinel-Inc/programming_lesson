@@ -21,6 +21,8 @@
 役割を持った「タグ」で要素を囲うように記述していきます。
 タグは数が多いため覚える必要はなく、必要になるたびに調べていけば大丈夫です。
 
+単純なHTMLとCSSを書いていく場合、vscodeならば拡張機能を用いるのが便利なのでおすすめです。
+
 ```html
 <!DOCTYPE html>
 <html lang="ja">
@@ -29,7 +31,7 @@
     <title>chapter1-section2</title>
   </head>
   <body>
-    <h1>見出しです。1から</h1>
+    <h1>見出しを意味しています。1から</h1>
     <h6>6まであり、数字が小さいほど文字が大きくなります。</h6>
 
     <a href="https://centinel.jp/" target="_blank" rel="noopener"
