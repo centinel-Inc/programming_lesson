@@ -1,5 +1,14 @@
 # 第 5 節 サイトから画像を収集しよう
 
+## 目的
+
+Python を使ってブラウザを操作し、画像を自動収集する
+
+## 学び方
+
+メインテーマであるブラウザ操作のパートです。
+今までの学びを形にしましょう！
+
 ### 完成形
 
 ```sh
@@ -13,7 +22,6 @@ python3 section5-5.py
 ### 今回のターゲット
 
 https://centinel.jp/
-
 
 ### 今回使うライブラリ
 
@@ -40,9 +48,10 @@ driver.get("https://centinel.jp/")
 ## 2. 画像要素を取得する
 
 ### ダウンロード対象の画像要素を調査
-開発者ツールから画像の要素を開いてみると画像要素のsrcに画像のURLが入っていることが確認できます。
 
-つまりこのURLをプログラム内で取得することができれば画像がダウンロードできそうです。
+開発者ツールから画像の要素を開いてみると画像要素の src に画像の URL が入っていることが確認できます。
+
+つまりこの URL をプログラム内で取得することができれば画像がダウンロードできそうです。
 
 <img src="./images/1.png">
 
@@ -65,10 +74,9 @@ driver.close()
 driver.quit()
 ```
 
+## 3. 画像の URL を取得
 
-## 3. 画像のURLを取得
-
-### 画像要素のリストから画像のURLを取得する
+### 画像要素のリストから画像の URL を取得する
 
 ```python
 from selenium import webdriver
@@ -96,7 +104,7 @@ driver.quit()
 
 ## 4. 画像をダウンロード
 
-### 取得したURLから画像を保存
+### 取得した URL から画像を保存
 
 ```python
 from selenium import webdriver
@@ -181,7 +189,8 @@ driver.quit()
 ```
 
 # 番外編 使いやすくしよう
-## 6. enumerateを使ってコードをきれいに
+
+## 6. enumerate を使ってコードをきれいに
 
 ```python
 from selenium import webdriver
@@ -223,14 +232,14 @@ for index, image in enumerate(image_elements,1):
     # alt属性を出力する
     print("image要素のalt属性を出力: " + image.get_attribute("alt"))
 
-    """ 
+    """
     考え方
     1.不要な画像のalt属性にはavatorやtagという文字列が含まれている
     2.つまりalt属性に不要な文字列が含まれる画像はダウンロードせずにスキップしたい
     3.if文を使ってalt属性の中身に特定の文字列が含まれていたらスキップして次の画像のチェックを行う
     """
     if "avator" in image.get_attribute("alt") or "tag" in image.get_attribute("alt"):
-        # continueを使うと後続の処理をスキップして次のループに移行します 
+        # continueを使うと後続の処理をスキップして次のループに移行します
         print("スキップします")
         continue
 
