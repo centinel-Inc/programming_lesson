@@ -1,39 +1,47 @@
 # 第 4 節 スクレイピングのための環境構築
 
+## 目的
 
+Python を使ってブラウザを操作するために必要な環境を構築する
 
-Pythonを使ってブラウザを操作するために必要な環境を構築していきます
+## 学び方
+
+メインテーマであるブラウザ操作に必要な環境構築のパートなので、実際に手を動かしながら進めてください。
 
 ## 1. ブラウザの準備
-本講座ではPythonでChromeを操作します。
 
-PCにインストールされていない場合は最新のChromeをインストールしてください。
+本講座では Python で Chrome を操作します。
+
+PC にインストールされていない場合は最新の Chrome をインストールしてください。
 
 https://www.google.com/intl/ja_jp/chrome/
 
+## 2. brew のインストール
 
-
-## 2. brewのインストール
-chromedriverのインストールにbrewを利用するので導入していない場合はインストールしてください
+chromedriver のインストールに brew を利用するので導入していない場合はインストールしてください
 
 https://brew.sh/index_ja
 
+## 3. chromedriver のインストール
 
-## 3. chromedriverのインストール
-chromeをpythonから操作するために必要なchromedriverをbrewを使ってインストールしてください
+chrome を python から操作するために必要な chromedriver を brew を使ってインストールしてください
+
 ```
 brew install chromedriver
 ```
 
-## 4. seleniumのインストール
-seleniumというライブラリを使ってwebdriverを制御して自動操作を行います。
+## 4. selenium のインストール
+
+selenium というライブラリを使って webdriver を制御して自動操作を行います。
 
 ```
 pip3 install selenium
 ```
 
 ## 5. 環境構築の確認
-### pythonでブラウザを起動する
+
+### python でブラウザを起動する
+
 ```python
 from selenium import webdriver
 from time import sleep
@@ -52,27 +60,29 @@ driver.quit()
 ```
 
 ## Tips
-### 起動時にエラーが出た時 その1
+
+### 起動時にエラーが出た時 その 1
+
 このようなエラーが出た場合は許可を与える必要があります。
 
 <img src="./images/1.png">
 
 <img src="./images/2.png">
 
-システム環境設定 > セキュリティとプライバシー に移動すると「chromedriverは開発元を確認できないため、使用がブロックされました。」というメッセージが表示されています。
+システム環境設定 > セキュリティとプライバシー に移動すると「chromedriver は開発元を確認できないため、使用がブロックされました。」というメッセージが表示されています。
 
 メッセージの右にある「このまま許可」をクリックしてください。
 
+### 起動時にエラーが出た時 その 2
 
+このようなエラーが出た場合は PC にインストールされている Chrome と chromedriver のバージョンが一致していません。
 
-### 起動時にエラーが出た時 その2
-このようなエラーが出た場合はPCにインストールされているChromeとchromedriverのバージョンが一致していません。
 ```
 selenium.common.exceptions.SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 92
 ```
 
-その場合はこのコマンドでchromedriverを最新版にしてください
+その場合はこのコマンドで chromedriver を最新版にしてください
+
 ```
 brew upgrade chromedriver
 ```
-
