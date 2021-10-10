@@ -9,6 +9,19 @@ Python を使ってブラウザを操作し、画像を自動収集する
 メインテーマであるブラウザ操作のパートです。
 今までの学びを形にしましょう！
 
+## 準備
+### 今回使うライブラリ
+
+```
+pip3 install selenium
+pip3 install requests
+```
+
+### 今回のターゲット
+
+https://centinel.jp/
+
+
 ### 完成形
 
 ```sh
@@ -19,16 +32,6 @@ python3 section5-5.py
 
 商品レビューサイトの画像を一括ダウンロードしてみましょう
 
-### 今回のターゲット
-
-https://centinel.jp/
-
-### 今回使うライブラリ
-
-```
-pip3 install selenium
-pip3 install requests
-```
 
 ## 1. ダウンロード先のサイトを開く
 
