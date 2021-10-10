@@ -25,10 +25,9 @@ pip3 install requests
 ## 1. ダウンロード先のサイトを開く
 
 
-### ブラウザで好きなサイトを開く
+### ブラウザで対象サイトを開く
 ```python
 from selenium import webdriver
-from time import sleep
 
 # ブラウザを開く
 driver = webdriver.Chrome()
@@ -36,14 +35,6 @@ driver = webdriver.Chrome()
 # 画像をダウンロードしたいサイトを開く
 driver.get("https://centinel.jp/")
 
-# 表示されたのを確認するために５秒処理を止める
-sleep(5)
-
-# タブを閉じる
-driver.close()
-
-# ブラウザを閉じる
-driver.quit()
 ```
 
 ## 2. 画像要素を取得する
