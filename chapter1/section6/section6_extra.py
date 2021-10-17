@@ -5,70 +5,61 @@ import time
 # GoogleフォームのURL
 form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform'
 
-# パラメータを保持する辞書型の変数
-# keyにurlパラメータ名、valueに入る要素名を入れる（valueはわかりやすければ適当な値でも大丈夫）
-url_param_dict = {
-    'usp': 'pp_url',
-    'entry.1029139045': '氏名',
-    'entry.387916820': 'メールアドレス',
-    'entry.1239014792': '電話番号',
-    'entry.1382078040': '住所',
-    'entry.731826105_year': '年',
-    'entry.731826105_month': '月',
-    'entry.731826105_day': '日',
-}
-
-def convertDictToUrlParams(params):
-    params_string = ''
-    for key, value in params.items():
-        params_string += '&' + key + "=" + value
-
-    # 最初の「&」を削除している。URLパラメータの最初は「&」ではないため。
-    # ここでは「スライス」という機能を使い、"1インデックス"以降の文字を取得している
-    # インデックスは0始まりなので、2文字目以降を取得することになる
-    return params_string[1:]
-
 # CSVを読み込む
 # 型のヒントを書くことでVS Codeにて補完が効くようになる
 df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
 
+sleep_interval = 0.75
+
 for index, row in df.iterrows():
-    # CSVデータを入れるため、辞書型の変数をコピーして用意する
-    # urlParamDictに副作用を及ぼしたくないので、値をコピーして一時的な変数を用意する
-    temp_url_param_dict = url_param_dict.copy()
-
-    # 辞書型のkeyにvalueを代入したい場合は、以下のように行います。
-    temp_url_param_dict['entry.1029139045'] = row['氏名']
-    temp_url_param_dict['entry.1029139045'] = row['メールアドレス']
-    temp_url_param_dict['entry.387916820'] = row['電話番号']
-    temp_url_param_dict['entry.1239014792'] = row['住所']
-    temp_url_param_dict['entry.731826105_year'] = row['年']
-    temp_url_param_dict['entry.731826105_month'] = row['月']
-    temp_url_param_dict['entry.731826105_day'] = row['日']
-
-    # URLパラメータの文字列を組み立てる
-    urlParams = convertDictToUrlParams(temp_url_param_dict)
-
-    form_url_with_params = form_url + "?" + urlParams;
-
+    print("🚀🚀🚀 {}番目のデータの送信を開始します 🚀🚀🚀".format(index+1))
     # ブラウザを操作するためのインスタンスを生成
     driver = webdriver.Chrome()
 
     # ブラウザでフォームを開く
-    driver.get(form_url_with_params)
+    driver.get(form_url)
 
     # 1秒間待つ
-    time.sleep(1)
+    # わかりやすくするため
+    time.sleep(sleep_interval)
+
+    name_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input'
+    driver.find_element_by_xpath(name_input_xpath).send_keys(row['氏名'])
+    print("氏名の記入に成功しました")
+    time.sleep(sleep_interval)
+
+    mail_address_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input'
+    driver.find_element_by_xpath(mail_address_input_xpath).send_keys(row['メールアドレス'])
+    print("メールアドレスの記入に成功しました")
+    time.sleep(sleep_interval)
+
+    telephone_number_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input'
+    driver.find_element_by_xpath(telephone_number_input_xpath).send_keys(row['電話番号'])
+    print("電話番号の記入に成功しました")
+    time.sleep(sleep_interval)
+
+    address_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div[2]/textarea'
+    driver.find_element_by_xpath(address_input_xpath).send_keys(row['住所'])
+    print("住所の記入に成功しました")
+    time.sleep(sleep_interval)
+
+    birthday_input_path = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[5]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/input'
+    driver.find_element_by_xpath(birthday_input_path).send_keys(row['生年月日'])
+    print("生年月日の記入に成功しました")
+    time.sleep(sleep_interval)
 
     # ボタンを押して送信する
-    path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div'
+    path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div' # コピーしたボタンのxpathを貼り付ける
     driver.find_element_by_xpath(path).click()
+    print("送信ボタンの押下に成功しました")
 
     # 3秒間待つ
-    time.sleep(3)
+    time.sleep(sleep_interval)
 
     # ブラウザを閉じる
     driver.close()
 
     # メモリを解放する
     driver.quit()
+
+    print("🏁🏁🏁 {}番目のデータの送信が完了しました 🏁🏁🏁 \n".format(index+1))
