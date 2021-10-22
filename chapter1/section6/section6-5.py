@@ -53,7 +53,6 @@ for index, row in df.iterrows():
     driver.find_element_by_xpath(path).click()
     print("送信ボタンの押下に成功しました")
 
-    # 3秒間待つ
     time.sleep(sleep_interval)
 
     # ブラウザを閉じる

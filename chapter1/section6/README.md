@@ -234,4 +234,126 @@ driver.quit()
 
 ## 4. CSV で送信したいデータを用意して、プログラムから読み込む
 
+### 目標
+
+CSV データを作成し、それを Python で読み込んでプリントする
+
+#### CSV データの作成
+
+スクリプトと同じ階層のフォルダに`data.csv`という名前のファイルを作成し、以下のデータを書き込んで保存
+
+```csv
+氏名,メールアドレス,電話番号,住所,生年月日
+テストタロウ0,test0@gmail.com,0800000000,東京都,19900110
+テストタロウ1,test1@gmail.com,08011111111,神奈川県,19910111
+```
+
+#### CSV データを読み込む
+
+以下のように pandas というライブラリで読み込む。
+
+```python
+import pandas as pd
+
+# CSVを読み込む
+# 型のヒントを書くことでVS Codeにて補完が効くようになる
+df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
+```
+
+```python
+import pandas as pd
+
+# CSVを読み込む
+# 型のヒントを書くことでVS Codeにて補完が効くようになる
+df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
+
+for index, row in df.iterrows():
+    # 一行プリント
+    print(row.to_string())
+
+    # 「氏名」カラムのみ取得
+    print('氏名: {}'.format(row['氏名']))
+
+    # 「メールアドレス」カラムのみ取得
+    print('メールアドレス: {}'.format(row['メールアドレス']))
+
+    # 以下同様
+    print('電話番号: {}'.format(row['電話番号']))
+    print('住所: {}'.format(row['住所']))
+    print('生年月日: {}'.format(row['生年月日']))
+```
+
 ## 5. 読み込んだデータを全件送信してみよう
+
+### 目標
+
+3 と 4 を組み合わせて、CSV データの内容を全て送信する
+
+```python
+import pandas as pd
+from selenium import webdriver
+import time
+
+# GoogleフォームのURL
+form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform'
+
+# CSVを読み込む
+# 型のヒントを書くことでVS Codeにて補完が効くようになる
+df: pd.DataFrame = pd.read_csv('./data.csv', dtype=str)
+
+# 毎度スリープ時間を直接指定してると、変更するときに面倒なので変数で保持する
+sleep_interval = 0.75
+
+for index, row in df.iterrows():
+    print("🚀🚀🚀 {}番目のデータの送信を開始します 🚀🚀🚀".format(index+1))
+    # ブラウザを操作するためのインスタンスを生成
+    driver = webdriver.Chrome()
+
+    # ブラウザでフォームを開く
+    driver.get(form_url)
+
+    # 1秒間待つ
+    # わかりやすくするため
+    time.sleep(sleep_interval)
+
+    name_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input'
+    # send_keysの引数に、CSVから取得したデータを入れる
+    driver.find_element_by_xpath(name_input_xpath).send_keys(row['氏名'])
+    print("氏名の記入に成功しました")
+    time.sleep(sleep_interval)
+
+    mail_address_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input'
+    driver.find_element_by_xpath(mail_address_input_xpath).send_keys(row['メールアドレス'])
+    print("メールアドレスの記入に成功しました")
+    time.sleep(sleep_interval)
+
+    telephone_number_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input'
+    driver.find_element_by_xpath(telephone_number_input_xpath).send_keys(row['電話番号'])
+    print("電話番号の記入に成功しました")
+    time.sleep(sleep_interval)
+
+    address_input_xpath = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div[2]/textarea'
+    driver.find_element_by_xpath(address_input_xpath).send_keys(row['住所'])
+    print("住所の記入に成功しました")
+    time.sleep(sleep_interval)
+
+    birthday_input_path = '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[5]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/input'
+    driver.find_element_by_xpath(birthday_input_path).send_keys(row['生年月日'])
+    print("生年月日の記入に成功しました")
+    time.sleep(sleep_interval)
+
+    # ボタンを押して送信する
+    path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div' # コピーしたボタンのxpathを貼り付ける
+    driver.find_element_by_xpath(path).click()
+    print("送信ボタンの押下に成功しました")
+
+    time.sleep(sleep_interval)
+
+    # ブラウザを閉じる
+    driver.close()
+
+    # メモリを解放する
+    driver.quit()
+
+    print("🏁🏁🏁 {}番目のデータの送信が完了しました 🏁🏁🏁 \n".format(index+1))
+```
