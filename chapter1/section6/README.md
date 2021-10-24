@@ -39,15 +39,15 @@ Google Form を使用します。
 
 https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t65MLb_Otxw/viewform
 
-<img src="./images/2.jpg">
+<img src="./images/2.jpg" width=600>
 
 2. 情報を入力する
 
-<img src="./images/3.jpg">
+<img src="./images/3.jpg" width=600>
 
 3. 送信ボタンを押す
 
-<img src="./images/4.jpg">
+<img src="./images/4.jpg" width=600>
 
 この三つの作業をプログラムに行わせたい。
 
@@ -113,7 +113,7 @@ driver.quit()
 
 2. フォームの xpath を抜き取る
 
-<img src="./images/10.jpg">
+   <img src="./images/10.jpg" width=600>
 
 #### 文字を入力する方法
 
