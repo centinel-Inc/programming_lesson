@@ -51,14 +51,14 @@ https://docs.google.com/forms/d/e/1FAIpQLSfoth2f2lJXwrpZSAwoW8iHeKOBnx4Ks7jesk_t
 
 この三つの作業をプログラムに行わせたい。
 
-## 2. 今回使用するライブラリをインストール
+# 実装開始
+
+今回使用するライブラリをインストール
 
 ```
 pip3 install selenium
 pip3 install pandas
 ```
-
-# 実装開始
 
 ## 1. フォームの URL をプログラムで開く
 
