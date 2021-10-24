@@ -44,6 +44,8 @@ path = '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div' # コピーした
 driver.find_element_by_xpath(path).click()
 print("送信ボタンの押下に成功しました")
 
+time.sleep(1)
+
 # ブラウザを閉じる
 driver.close()
 
