@@ -111,7 +111,7 @@ driver.quit()
     Windows -> Ctrl + Shift + i
    ```
 
-2.フォームの xpath を抜き取る
+2. フォームの xpath を抜き取る
 
 <img src="./images/10.jpg">
 
