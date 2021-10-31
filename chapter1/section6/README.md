@@ -123,6 +123,8 @@ driver.quit()
 driver.find_element_by_xpath(xpathの文字列).send_keys('入力したい内容')
 ```
 
+[Selenium ドキュメント](https://kurozumi.github.io/selenium-python/navigating.html)
+
 ```python
 from selenium import webdriver
 import time
